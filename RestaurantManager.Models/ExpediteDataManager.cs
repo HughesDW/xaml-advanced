@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace RestaurantManager.Models
 {
@@ -6,7 +7,7 @@ namespace RestaurantManager.Models
     {
         protected override void OnDataLoaded()
         {
-
+            OnPropertyChanged("OrderItems");
         }
 
         public List<Order> OrderItems
