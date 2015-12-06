@@ -19,8 +19,11 @@ namespace RestaurantManager.Models
             get { return _orderItems; }
             set
             {
-                _orderItems = value; 
-                OnPropertyChanged();
+                if (value != _orderItems)
+                {
+                    _orderItems = value;
+                    OnPropertyChanged(); 
+                }
             }
         }
     }

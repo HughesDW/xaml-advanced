@@ -24,8 +24,11 @@ namespace RestaurantManager.Models
             get { return _menuItems; }
             set
             {
-                _menuItems = value; 
-                OnPropertyChanged();
+                if (value != _menuItems)
+                {
+                    _menuItems = value;
+                    OnPropertyChanged(); 
+                }
             }
         }
 
@@ -34,8 +37,11 @@ namespace RestaurantManager.Models
             get { return _currentlySelectedMenuItems; }
             set
             {
-                _currentlySelectedMenuItems = value; 
-                OnPropertyChanged();
+                if (value != _currentlySelectedMenuItems)
+                {
+                    _currentlySelectedMenuItems = value;
+                    OnPropertyChanged(); 
+                }
             }
         }
     }
