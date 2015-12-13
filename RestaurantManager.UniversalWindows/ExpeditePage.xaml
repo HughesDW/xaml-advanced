@@ -29,41 +29,51 @@
         <GridView Grid.Row="1" ItemsSource="{Binding OrderItems}">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="325" Width="275" Margin="20,4" >
+                    <Grid Height="375" Width="350" Margin="20,4" >
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="100" />
+                            <RowDefinition Height="75" />
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
-                        <Border Background="DarkGray">
-                            <ListBox ItemsSource="{Binding Items}">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <TextBlock Text="{Binding Title}" 
-                                                       Style="{StaticResource SubtitleTextBlockStyle}" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </Border>
-                        
-                        <StackPanel Grid.Row="1" Background="Gray">
+                        <Border Grid.Row="0" Background="DimGray">
                             <TextBlock Text="{Binding Table.Description}" 
                                        Style="{StaticResource TitleTextBlockStyle}" 
                                        Margin="4"/>
-                          
-                            <TextBlock Style="{StaticResource CaptionTextBlockStyle}" 
+                        </Border>
+                        <Border Grid.Row="1" Background="DarkGray">
+                            <ScrollViewer>
+                                <ListBox ItemsSource="{Binding Items}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}" >
+                                                    <Run Text="{Binding Title}" />
+                                                    <Run Text=":  $"/>
+                                                    <Run Text="{Binding Price}"/>
+                                                    </TextBlock>
+
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </ScrollViewer>
+                        </Border>
+
+                        <StackPanel Grid.Row="2" Background="DimGray">
+                             <TextBlock Style="{StaticResource CaptionTextBlockStyle}" 
                                        Margin="12,4">
                                 <Run Text ="Special Notes" /> 
                                 <LineBreak/>
                                 <Run Text="{Binding SpecialRequests}" />
                             </TextBlock>
                         </StackPanel>
- 
-                        <StackPanel Grid.Row="2" Background="Gray">
+
+                        <Border Grid.Row="3" Background="DimGray">
                             <Button Content="Delete" HorizontalAlignment="Center"/>
-                        </StackPanel>
+                        </Border>
                         
                     </Grid>
                 </DataTemplate>
