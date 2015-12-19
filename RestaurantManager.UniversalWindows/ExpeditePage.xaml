@@ -6,7 +6,8 @@
     xmlns:models="using:RestaurantManager.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:extensions="using:RestaurantManager.Extensions">
 
     <Page.DataContext>
         <models:ExpediteDataManager />
@@ -29,14 +30,14 @@
         <GridView Grid.Row="1" ItemsSource="{Binding OrderItems}">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="375" Width="350" Margin="20,4" >
+                    <Grid Height="375" Width="350" Margin="20,4" Background="DimGray">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="75" />
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Background="DimGray">
+                        <Border Grid.Row="0" Background="Gray">
                             <TextBlock Text="{Binding Table.Description}" 
                                        Style="{StaticResource TitleTextBlockStyle}" 
                                        Margin="4"/>
@@ -62,7 +63,7 @@
                             </ScrollViewer>
                         </Border>
 
-                        <StackPanel Grid.Row="2" Background="DimGray">
+                        <StackPanel Grid.Row="2" >
                              <TextBlock Style="{StaticResource CaptionTextBlockStyle}" 
                                        Margin="12,4">
                                 <Run Text ="Special Notes" /> 
@@ -71,7 +72,20 @@
                             </TextBlock>
                         </StackPanel>
 
-                        <Border Grid.Row="3" Background="DimGray">
+                        <Border Grid.Row="3" >
+                            <Border.Background>
+                                <SolidColorBrush x:Name="StatusBrush">
+                                    <SolidColorBrush.Color>
+                                        <Binding Path="Expedite">
+                                            <Binding.Converter>
+                                                <extensions:BoolToColorConverter 
+                                                    TrueColor="Red" 
+                                                    FalseColor="Transparent" />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>                            
+                            </Border.Background>
                             <Button Content="Delete" HorizontalAlignment="Center"/>
                         </Border>
                         
