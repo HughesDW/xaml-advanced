@@ -1,22 +1,24 @@
 ﻿using System.Collections.Generic;
 using RestaurantManager.Models;
+using System.Collections.ObjectModel;
 
 namespace RestaurantManager.ViewModels
 {
     public class OrderViewModel : ViewModel
     {
         private List<MenuItem> _menuItems;
-        private List<MenuItem> _currentlySelectedMenuItems;
 
         protected override void OnDataLoaded()
         {
             this.MenuItems = base.Repository.StandardMenuItems;
 
-            this.CurrentlySelectedMenuItems = new List<MenuItem>
-            {
-                this.MenuItems[3],
-                this.MenuItems[5]
-            };
+            this.CurrentlySelectedMenuItems = new ObservableCollection<MenuItem>();
+            //{
+            //    this.MenuItems[3],
+            //    this.MenuItems[5]
+            //};
+            this.CurrentlySelectedMenuItems.Add(MenuItems[3]);
+            this.CurrentlySelectedMenuItems.Add(MenuItems[5]);
 
         }
 
@@ -33,17 +35,6 @@ namespace RestaurantManager.ViewModels
             }
         }
 
-        public List<MenuItem> CurrentlySelectedMenuItems
-        {
-            get { return _currentlySelectedMenuItems; }
-            set
-            {
-                if (value != _currentlySelectedMenuItems)
-                {
-                    _currentlySelectedMenuItems = value;
-                    OnPropertyChanged(); 
-                }
-            }
-        }
+        public ObservableCollection<MenuItem> CurrentlySelectedMenuItems { get; private set; }
     }
 }
