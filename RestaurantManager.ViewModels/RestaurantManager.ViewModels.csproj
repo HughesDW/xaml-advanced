@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="ExpediteViewModel.cs" />
     <Compile Include="OrderViewModel.cs" />
+    <Compile Include="RestaurantContextFactory.cs" />
     <Compile Include="ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\RestaurantManager.ViewModels.rd.xml" />
