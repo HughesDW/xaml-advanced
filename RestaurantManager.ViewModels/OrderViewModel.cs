@@ -11,6 +11,10 @@ namespace RestaurantManager.ViewModels
     {
         private List<MenuItem> _menuItems;
         private MenuItem _selectedMenuItem;
+        private string _specialRequest;
+
+
+
 
         public OrderViewModel()
         {
@@ -18,25 +22,12 @@ namespace RestaurantManager.ViewModels
             SubmitOrderCommand = new DelegateCommand<object>(SubmitOrder);
             this.CurrentlySelectedMenuItems = new ObservableCollection<MenuItem>();
 
-
-            //this.CurrentlySelectedMenuItems.Add(MenuItems[3]);
-            //this.CurrentlySelectedMenuItems.Add(MenuItems[5]);
         }
 
-
-
-
+        
         protected override void OnDataLoaded()
         {
             this.MenuItems = base.Repository.StandardMenuItems;
-
-            //this.CurrentlySelectedMenuItems = new ObservableCollection<MenuItem>();
-            ////{
-            ////    this.MenuItems[3],
-            ////    this.MenuItems[5]
-            ////};
-            //this.CurrentlySelectedMenuItems.Add(MenuItems[3]);
-            //this.CurrentlySelectedMenuItems.Add(MenuItems[5]);
 
         }
 
@@ -66,6 +57,14 @@ namespace RestaurantManager.ViewModels
             }
         }
 
+        public string SpecialRequest
+        {
+            get { return _specialRequest; }
+            set { _specialRequest = value;
+                OnPropertyChanged();
+
+            }
+        }
 
         public void AddMenuItem(object parameter)
         {
@@ -78,12 +77,15 @@ namespace RestaurantManager.ViewModels
                 new Order
                 {
                     Items = this.CurrentlySelectedMenuItems.ToList(),
-                    Table = base.Repository.Tables.Last()
+                    Table = base.Repository.Tables.Last(),
+                    SpecialRequests = this.SpecialRequest
+                    
                     
                 }
             );
 
             this.CurrentlySelectedMenuItems.Clear();
+            this.SpecialRequest = "";
         }
 
         public ICommand AddMenuItemCommand { get; private set; }

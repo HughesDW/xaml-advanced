@@ -6,26 +6,16 @@ namespace RestaurantManager.ViewModels
 {
     public class ExpediteViewModel : ViewModel
     {
-        private List<Order> _orderItems;
 
         protected override void OnDataLoaded()
         {
-
-            OrderItems = base.Repository.Orders; 
+            OnPropertyChanged("OrderItems");
 
         }
 
         public List<Order> OrderItems
         {
-            get { return _orderItems; }
-            set
-            {
-                if (value != _orderItems)
-                {
-                    _orderItems = value;
-                    OnPropertyChanged(); 
-                }
-            }
+            get { return base.Repository?.Orders; }
         }
     }
 }
