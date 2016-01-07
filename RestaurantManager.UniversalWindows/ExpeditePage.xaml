@@ -94,6 +94,6 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button Content="Clear All Orders" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" />
+        <Button Content="Clear All Orders" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Command="{Binding ClearOrdersCommand}" />
     </Grid>
 </Page>
