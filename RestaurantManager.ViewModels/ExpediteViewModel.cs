@@ -23,6 +23,7 @@ namespace RestaurantManager.ViewModels
 
         protected override void OnDataLoaded()
         {
+            this.IsLoading = false;
             OnPropertyChanged("OrderItems");
 
         }

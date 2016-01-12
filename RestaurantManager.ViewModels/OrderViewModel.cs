@@ -27,6 +27,8 @@ namespace RestaurantManager.ViewModels
         
         protected override void OnDataLoaded()
         {
+            this.IsLoading = false;
+
             this.MenuItems = base.Repository.StandardMenuItems;
 
         }
