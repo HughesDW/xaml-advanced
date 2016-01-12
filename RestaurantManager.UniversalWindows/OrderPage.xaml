@@ -34,6 +34,7 @@
             <RowDefinition Height="0.10*"/>
             <RowDefinition Height="0.10*"/>
         </Grid.RowDefinitions>
+        <ProgressRing Grid.RowSpan="6" Grid.ColumnSpan="3" IsActive="{Binding IsLoading}" Height="200" Width="200"/>
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Special Requests:" />
         <TextBlock Grid.Row="2" Grid.Column="2" Text="Order Items:" />
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SpecialRequest}" Background="Transparent" RequestedTheme="Dark"/>
@@ -41,5 +42,6 @@
         <ListView Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Margin="10" ItemsSource="{Binding CurrentlySelectedMenuItems}" DisplayMemberPath="Title" />
         <Button Content="Add to Order" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" Command="{Binding AddMenuItemCommand}"/>
         <Button Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding SubmitOrderCommand}" />
+        <ProgressRing Grid.RowSpan="6" Grid.ColumnSpan="3" IsActive="{Binding IsLoading}" Height="200" Width="200"/>
     </Grid>
 </Page>
