@@ -28,8 +28,13 @@
             <RowDefinition Height="0.85*"/>
             <RowDefinition Height="0.10*"/>
         </Grid.RowDefinitions>
-        <ProgressRing Grid.RowSpan="3" IsActive="{Binding IsLoading}" Height="200" Width="200"/>
-        <GridView Grid.Row="1" ItemsSource="{Binding OrderItems}">
+        <ProgressRing Grid.RowSpan="3" 
+                      IsActive="{Binding IsLoading}" 
+                      Height="200" 
+                      Width="200"/>
+        <GridView x:Name="OrderGridView" 
+                  Grid.Row="1" 
+                  ItemsSource="{Binding OrderItems, Mode=TwoWay}">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="375" Width="350" Margin="20,4" Background="DimGray">
@@ -39,12 +44,14 @@
                             <RowDefinition Height="75" />
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Background="Gray">
+                        <Border Grid.Row="0" 
+                                Background="Gray">
                             <TextBlock Text="{Binding Table.Description}" 
                                        Style="{StaticResource TitleTextBlockStyle}" 
                                        Margin="4"/>
                         </Border>
-                        <Border Grid.Row="1" Background="DarkGray">
+                        <Border Grid.Row="1" 
+                                Background="DarkGray">
                             <ScrollViewer>
                                 <ListBox ItemsSource="{Binding Items}">
                                     <ListBox.ItemTemplate>
@@ -56,7 +63,6 @@
                                                     <Run Text=":  $"/>
                                                     <Run Text="{Binding Price}"/>
                                                     </TextBlock>
-
                                                 </StackPanel>
                                             </Grid>
                                         </DataTemplate>
@@ -88,13 +94,19 @@
                                     </SolidColorBrush.Color>
                                 </SolidColorBrush>                            
                             </Border.Background>
-                            <Button Content="Delete" HorizontalAlignment="Center"/>
-                        </Border>
-                        
+                            <Button Content="Delete" 
+                                    HorizontalAlignment="Center" 
+                                    Command="{Binding DataContext.DeleteOrderCommand, ElementName=OrderGridView}"
+                                    CommandParameter="{Binding}" />
+                        </Border>                        
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button Content="Clear All Orders" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Command="{Binding ClearOrdersCommand}" />
+        <Button Content="Clear All Orders" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Grid.Row="2" 
+                Command="{Binding ClearOrdersCommand}" />
     </Grid>
 </Page>

@@ -12,7 +12,15 @@ namespace RestaurantManager.ViewModels
         public ExpediteViewModel()
         {
             ClearOrdersCommand = new DelegateCommand<object>(ClearOrders);
+            DeleteOrderCommand = new DelegateCommand<Order>(DeleteOrder);
 
+        }
+
+        private void DeleteOrder(Order obj)
+        {
+            base.Repository?.Orders.Remove(obj);
+            //OnPropertyChanged("OrderItems");
+            OrderItems.Remove(obj);
         }
 
         public void ClearOrders(object obj)
@@ -29,6 +37,7 @@ namespace RestaurantManager.ViewModels
         }
 
         public ICommand ClearOrdersCommand { get; private set; }
+        public ICommand DeleteOrderCommand { get; private set; }
 
         //public List<Order> OrderItems
         //{
